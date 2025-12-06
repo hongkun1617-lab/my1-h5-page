@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>滑雪教学指南 - 专业滑雪教程</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #00a8ff;
+            --secondary-color: #0097e6;
+            --accent-color: #e84118;
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --text-dark: #2f3640;
+            --text-light: #f5f6fa;
+            --white: #ffffff;
+            --card-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .cta-btn {
+            padding: 1rem 2.5rem;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            background-color: var(--secondary-color);
+            box-shadow: 0 5px 15px rgba(0,168,255,0.4);
+        }
+
+        /* Sections General */
+        section {
+            padding: 5rem 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-title .line {
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        /* Equipment Section */
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .equip-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .equip-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .equip-icon {
+            height: 150px;
+            background: var(--bg-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--secondary-color);
+        }
+
+        .equip-info {
+            padding: 1.5rem;
+        }
+
+        .equip-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .equip-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Technique Section (Tabs) */
+        .tech-container {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+        }
+
+        .tech-tabs {
+            display: flex;
+            background: #f1f2f6;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 1.5rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #7f8fa6;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            background: var(--white);
+            color: var(--primary-color);
+            border-top: 3px solid var(--primary-color);
+        }
+
+        .tech-content {
+            padding: 3rem;
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .tech-content.active {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .tech-text h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .tech-text ul {
+            list-style-position: inside;
+            margin-top: 1rem;
+        }
+
+        .tech-text li {
+            margin-bottom: 0.5rem;
+        }
+
+        .tech-visual {
+            height: 300px;
+            background: #dfe6e9;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: #b2bec3;
+        }
+
+        /* Safety Section */
+        .safety-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .safety-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .safety-icon {
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+
+        /* Quiz Section */
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .question {
+            margin-bottom: 1.5rem;
+        }
+
+        .question h3 {
+            margin-bottom: 1rem;
+        }
+
+        .options button {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border: 2px solid #f1f2f6;
+            background: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+
+        .options button:hover {
+            background: #f1f2f6;
+        }
+
+        .options button.correct {
+            background: #dff9fb;
+            border-color: #22a6b3;
+            color: #22a6b3;
+        }
+
+        .options button.wrong {
+            background: #ffdd59;
+            border-color: #f0932b;
+            color: #d35400;
+        }
+
+        /* Game Section */
+        #game-section {
+            background: #2f3640;
+            color: var(--white);
+        }
+
+        .game-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            margin: 0 auto;
+            background: linear-gradient(to bottom, #87CEEB, #E0F7FA);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 4px solid var(--white);
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .game-ui {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            color: #333;
+            z-index: 10;
+        }
+
+        .game-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+        }
+
+        .game-btn {
+            padding: 10px 30px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e272e;
+            color: #d2dae2;
+            padding: 3rem 5% 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-col ul li a {
+            color: #d2dae2;
+            text-decoration: none;
+        }
+
+        .developer-credit {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #485460;
+            font-size: 1.1rem;
+        }
+
+        .dev-name {
+            color: #00d2d3;
+            font-weight: bold;
+            font-size: 1.2em;
+            display: inline-block;
+            margin-left: 5px;
+            text-shadow: 0 0 10px rgba(0, 210, 211, 0.3);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .tech-content.active {
+                grid-template-columns: 1fr;
+            }
+            .tech-visual {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <i class="fas fa-snowflake"></i> 极速滑雪
+        </div>
+        <ul class="nav-links">
+            <li><a href="#basics">基础入门</a></li>
+            <li><a href="#equipment">装备选择</a></li>
+            <li><a href="#techniques">技巧教学</a></li>
+            <li><a href="#safety">安全指南</a></li>
+            <li><a href="#game-section">练习模式</a></li>
+        </ul>
+        <div class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>滑雪教学指南</h1>
+            <p>探索冰雪世界，从零开始掌握专业滑雪技巧</p>
+            <a href="#basics" class="cta-btn">开始学习</a>
+        </div>
+    </header>
+
+    <!-- Basics Section -->
+    <section id="basics">
+        <div class="section-title">
+            <h2>基础入门</h2>
+            <div class="line"></div>
+        </div>
+        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+            <p style="font-size: 1.2rem; color: #555; margin-bottom: 2rem;">
+                滑雪是一项充满激情与挑战的运动。无论你是想体验速度的快感，还是欣赏雪山的壮丽景色，掌握正确的基础知识是安全享受滑雪乐趣的第一步。
+            </p>
+            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                <div style="text-align: center;">
+                    <i class="fas fa-mountain" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                    <h4>场地认知</h4>
+                </div>
+                <div style="text-align: center;">
+                    <i class="fas fa-heartbeat" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                    <h4>体能准备</h4>
+                </div>
+                <div style="text-align: center;">
+                    <i class="fas fa-balance-scale" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                    <h4>重心控制</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipment Section -->
+    <section id="equipment" style="background-color: #fff;">
+        <div class="section-title">
+            <h2>装备选择</h2>
+            <div class="line"></div>
+        </div>
+        <div class="equipment-grid">
+            <div class="equip-card" onclick="alert('双板适合初学者，稳定性好，易于控制速度。')">
+                <div class="equip-icon"><i class="fas fa-skiing"></i></div>
+                <div class="equip-info">
+                    <h3>双板 (Skis)</h3>
+                    <p>适合初学者的经典选择，左右脚独立控制，平衡感更佳。</p>
+                </div>
+            </div>
+            <div class="equip-card" onclick="alert('单板风格酷炫，侧身滑行，需要较好的核心力量。')">
+                <div class="equip-icon"><i class="fas fa-snowboarding"></i></div>
+                <div class="equip-info">
+                    <h3>单板 (Snowboard)</h3>
+                    <p>深受年轻人喜爱，侧向滑行，动作自由度高，风格独特。</p>
+                </div>
+            </div>
+            <div class="equip-card" onclick="alert('头盔是滑雪最重要的安全装备，请务必佩戴！')">
+                <div class="equip-icon"><i class="fas fa-hard-hat"></i></div>
+                <div class="equip-info">
+                    <h3>头盔 (Helmet)</h3>
+                    <p>安全第一！保护头部免受撞击，滑雪必备的生命保障。</p>
+                </div>
+            </div>
+            <div class="equip-card" onclick="alert('雪镜可以防风、防紫外线，并提高雪地视线清晰度。')">
+                <div class="equip-icon"><i class="fas fa-glasses"></i></div>
+                <div class="equip-info">
+                    <h3>雪镜 (Goggles)</h3>
+                    <p>防止雪盲症，阻挡风雪，提供清晰的视野。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Techniques Section -->
+    <section id="techniques">
+        <div class="section-title">
+            <h2>技巧教学</h2>
+            <div class="line"></div>
+        </div>
+        <div class="tech-container">
+            <div class="tech-tabs">
+                <button class="tab-btn active" onclick="openTab(event, 'level1')">初级：犁式滑行</button>
+                <button class="tab-btn" onclick="openTab(event, 'level2')">中级：半犁式转弯</button>
+                <button class="tab-btn" onclick="openTab(event, 'level3')">高级：平行滑行</button>
+            </div>
+            
+            <div id="level1" class="tech-content active">
+                <div class="tech-text">
+                    <h3>犁式滑行 (The Plough)</h3>
+                    <p>这是滑雪最基础的动作，用于控制速度和刹车。</p>
+                    <ul>
+                        <li>双板板头靠拢，板尾分开，呈内八字形状。</li>
+                        <li>膝盖微曲，重心向前，不要后坐。</li>
+                        <li>加大内刃立起角度可以增加阻力，减慢速度。</li>
+                    </ul>
+                </div>
+                <div class="tech-visual">
+                    <i class="fas fa-caret-up"></i>
+                </div>
+            </div>
+
+            <div id="level2" class="tech-content">
+                <div class="tech-text">
+                    <h3>半犁式转弯 (Stem Turn)</h3>
+                    <p>从犁式向平行滑行过渡的重要阶段。</p>
+                    <ul>
+                        <li>开始时呈犁式，重心移向外侧腿。</li>
+                        <li>转弯过程中，内侧腿逐渐向外侧腿靠拢。</li>
+                        <li>利用身体的旋转带动雪板转向。</li>
+                    </ul>
+                </div>
+                <div class="tech-visual">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+            </div>
+
+            <div id="level3" class="tech-content">
+                <div class="tech-text">
+                    <h3>平行滑行 (Parallel Turn)</h3>
+                    <p>双板始终保持平行，速度快，姿态优美。</p>
+                    <ul>
+                        <li>双板平行，与肩同宽。</li>
+                        <li>通过重心交换和板刃切换来完成转弯。</li>
+                        <li>上半身保持稳定，面向山下。</li>
+                    </ul>
+                </div>
+                <div class="tech-visual">
+                    <i class="fas fa-wind"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Safety Section -->
+    <section id="safety" style="background-color: #fff;">
+        <div class="section-title">
+            <h2>安全指南</h2>
+            <div class="line"></div>
+        </div>
+        <div class="safety-grid">
+            <div class="safety-item">
+                <div class="safety-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                <div>
+                    <h3>正确摔倒</h3>
+                    <p>感觉失控时，主动向身体侧后方坐倒，避免手腕撑地，保护头部。</p>
+                </div>
+            </div>
+            <div class="safety-item">
+                <div class="safety-icon"><i class="fas fa-users"></i></div>
+                <div>
+                    <h3>雪道规则</h3>
+                    <p>前方滑雪者有路权，后方滑雪者必须保持距离，超车时需留出安全空间。</p>
+                </div>
+            </div>
+            <div class="safety-item">
+                <div class="safety-icon"><i class="fas fa-temperature-low"></i></div>
+                <div>
+                    <h3>热身运动</h3>
+                    <p>滑雪前务必进行充分的关节热身，特别是膝盖、脚踝和腰部。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz-section">
+        <div class="section-title">
+            <h2>知识测验</h2>
+            <div class="line"></div>
+        </div>
+        <div class="quiz-container" id="quiz-container">
+            <!-- Quiz content injected by JS -->
+        </div>
+    </section>
+
+    <!-- Mini Game Section -->
+    <section id="game-section">
+        <div class="section-title">
+            <h2 style="color: white;">模拟练习模式</h2>
+            <div class="line" style="background-color: white;"></div>
+        </div>
+        <p style="text-align: center; color: #ccc; margin-bottom: 1rem;">使用左右方向键或点击屏幕左右侧来躲避障碍物</p>
+        <div class="game-wrapper">
+            <div class="game-ui">
+                <span>得分: <span id="score">0</span></span>
+                <span>最高分: <span id="high-score">0</span></span>
+            </div>
+            <div class="game-overlay" id="start-screen">
+                <h2 style="color:white; font-size: 2rem; margin-bottom: 1rem;">滑雪大冒险</h2>
+                <p style="color:white;">躲避树木和岩石</p>
+                <button class="game-btn" onclick="startGame()">开始游戏</button>
+            </div>
+            <div class="game-overlay" id="game-over-screen" style="display: none;">
+                <h2 style="color:white; font-size: 2rem; margin-bottom: 1rem;">游戏结束</h2>
+                <p style="color:white;">最终得分: <span id="final-score">0</span></p>
+                <button class="game-btn" onclick="startGame()">再试一次</button>
+            </div>
+            <canvas id="gameCanvas"></canvas>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>关于我们</h4>
+                <p>致力于推广冰雪运动，让每个人都能享受滑雪的乐趣。</p>
+            </div>
+            <div class="footer-col">
+                <h4>快速链接</h4>
+                <ul>
+                    <li><a href="#basics">基础入门</a></li>
+                    <li><a href="#equipment">装备推荐</a></li>
+                    <li><a href="#safety">安全须知</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>联系方式</h4>
+                <ul>
+                    <li>Email: contact@skiing-guide.cn</li>
+                    <li>Tel: 400-123-4567</li>
+                </ul>
+            </div>
+        </div>
+        <div class="developer-credit">
+            <p>&copy; 2025 滑雪教学指南. All rights reserved.</p>
+            <p style="margin-top: 10px;">开发者：<span class="dev-name">刘红坤</span></p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Tab Functionality
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tech-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "grid";
+            // Small timeout to allow display:grid to apply before adding opacity class for animation
+            setTimeout(() => {
+                document.getElementById(tabName).classList.add("active");
+            }, 10);
+            evt.currentTarget.className += " active";
+        }
+
+        // Quiz Logic
+        const quizData = [
+            {
+                question: "滑雪初学者最基本的减速动作是什么？",
+                options: ["平行滑行", "犁式 (内八字)", "单脚跳", "加速冲刺"],
+                correct: 1
+            },
+            {
+                question: "滑雪时最重要的安全装备是什么？",
+                options: ["墨镜", "围巾", "头盔", "手套"],
+                correct: 2
+            },
+            {
+                question: "如果在雪道上摔倒了，应该怎么做？",
+                options: ["躺在原地休息", "尽快站起并移动到雪道边缘", "脱掉雪板走下去", "大声呼喊"],
+                correct: 1
+            }
+        ];
+
+        const quizContainer = document.getElementById('quiz-container');
+
+        function renderQuiz() {
+            quizContainer.innerHTML = '';
+            quizData.forEach((q, index) => {
+                const qDiv = document.createElement('div');
+                qDiv.className = 'question';
+                qDiv.innerHTML = `<h3>${index + 1}. ${q.question}</h3><div class="options"></div>`;
+                
+                const optionsDiv = qDiv.querySelector('.options');
+                q.options.forEach((opt, optIndex) => {
+                    const btn = document.createElement('button');
+                    btn.innerText = opt;
+                    btn.onclick = () => checkAnswer(btn, optIndex, q.correct);
+                    optionsDiv.appendChild(btn);
+                });
+                quizContainer.appendChild(qDiv);
+            });
+        }
+
+        function checkAnswer(btn, selected, correct) {
+            const parent = btn.parentElement;
+            const buttons = parent.getElementsByTagName('button');
+            
+            // Disable all buttons in this question
+            for(let b of buttons) {
+                b.disabled = true;
+                if(b === btn && selected !== correct) {
+                    b.classList.add('wrong');
+                }
+                // Highlight correct answer logic (finding the button index)
+                // Since we don't have direct index reference in loop, we can re-loop or check text
+            }
+            // Highlight the correct button
+            buttons[correct].classList.add('correct');
+        }
+
+        renderQuiz();
+
+        // Mini Game Logic
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        let gameLoop;
+        let score = 0;
+        let highScore = 0;
+        let gameSpeed = 3;
+        let isGameOver = false;
+
+        // Resize canvas
+        function resizeCanvas() {
+            const wrapper = document.querySelector('.game-wrapper');
+            canvas.width = wrapper.clientWidth;
+            canvas.height = wrapper.clientHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const player = {
+            x: canvas.width / 2,
+            y: 50, // Skier is at the top
+            width: 20,
+            height: 30,
+            color: '#e84118'
+        };
+
+        let obstacles = [];
+
+        function createObstacle() {
+            const width = 30;
+            const x = Math.random() * (canvas.width - width);
+            obstacles.push({
+                x: x,
+                y: canvas.height + 50, // Start from bottom
+                width: width,
+                height: 40,
+                type: Math.random() > 0.5 ? 'tree' : 'rock'
+            });
+        }
+
+        function drawPlayer() {
+            ctx.fillStyle = player.color;
+            // Draw a simple triangle for skier
+            ctx.beginPath();
+            ctx.moveTo(player.x, player.y);
+            ctx.lineTo(player.x - 10, player.y + player.height);
+            ctx.lineTo(player.x + 10, player.y + player.height);
+            ctx.closePath();
+            ctx.fill();
+            
+            // Head
+            ctx.beginPath();
+            ctx.arc(player.x, player.y - 5, 5, 0, Math.PI * 2);
+            ctx.fillStyle = '#333';
+            ctx.fill();
+        }
+
+        function drawObstacles() {
+            obstacles.forEach(obs => {
+                if (obs.type === 'tree') {
+                    ctx.fillStyle = '#2ecc71';
+                    ctx.beginPath();
+                    ctx.moveTo(obs.x + obs.width/2, obs.y - obs.height);
+                    ctx.lineTo(obs.x, obs.y);
+                    ctx.lineTo(obs.x + obs.width, obs.y);
+                    ctx.fill();
+                } else {
+                    ctx.fillStyle = '#95a5a6';
+                    ctx.beginPath();
+                    ctx.arc(obs.x + obs.width/2, obs.y - obs.height/2, obs.width/2, 0, Math.PI*2);
+                    ctx.fill();
+                }
+            });
+        }
+
+        function update() {
+            if (isGameOver) return;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Move player (simple physics)
+            if (keys.ArrowLeft && player.x > 20) player.x -= 5;
+            if (keys.ArrowRight && player.x < canvas.width - 20) player.x += 5;
+
+            // Spawn obstacles
+            if (Math.random() < 0.02 + (score * 0.0001)) {
+                createObstacle();
+            }
+
+            // Update obstacles (they move UP to simulate skiing DOWN)
+            for (let i = 0; i < obstacles.length; i++) {
+                obstacles[i].y -= gameSpeed;
+
+                // Collision Detection
+                // Simple AABB approximation
+                const pLeft = player.x - 10;
+                const pRight = player.x + 10;
+                const pTop = player.y - 5;
+                const pBottom = player.y + player.height;
+
+                const oLeft = obstacles[i].x;
+                const oRight = obstacles[i].x + obstacles[i].width;
+                const oTop = obstacles[i].y - obstacles[i].height;
+                const oBottom = obstacles[i].y;
+
+                if (pLeft < oRight && pRight > oLeft && pTop < oBottom && pBottom > oTop) {
+                    gameOver();
+                }
+
+                // Remove off-screen
+                if (obstacles[i].y < -50) {
+                    obstacles.splice(i, 1);
+                    score += 10;
+                    document.getElementById('score').innerText = score;
+                    if(score % 100 === 0) gameSpeed += 0.5;
+                    i--;
+                }
+            }
+
+            drawObstacles();
+            drawPlayer();
+
+            requestAnimationFrame(update);
+        }
+
+        function startGame() {
+            document.getElementById('start-screen').style.display = 'none';
+            document.getElementById('game-over-screen').style.display = 'none';
+            score = 0;
+            gameSpeed = 3;
+            obstacles = [];
+            player.x = canvas.width / 2;
+            isGameOver = false;
+            document.getElementById('score').innerText = '0';
+            update();
+        }
+
+        function gameOver() {
+            isGameOver = true;
+            if (score > highScore) {
+                highScore = score;
+                document.getElementById('high-score').innerText = highScore;
+            }
+            document.getElementById('final-score').innerText = score;
+            document.getElementById('game-over-screen').style.display = 'flex';
+        }
+
+        // Controls
+        const keys = {};
+        window.addEventListener('keydown', e => keys[e.code] = true);
+        window.addEventListener('keyup', e => keys[e.code] = false);
+
+        // Touch controls
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            const touchX = e.touches[0].clientX;
+            const rect = canvas.getBoundingClientRect();
+            const relativeX = touchX - rect.left;
+            
+            if (relativeX < canvas.width / 2) {
+                keys.ArrowLeft = true;
+                keys.ArrowRight = false;
+            } else {
+                keys.ArrowRight = true;
+                keys.ArrowLeft = false;
+            }
+        });
+
+        canvas.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            keys.ArrowLeft = false;
+            keys.ArrowRight = false;
+        });
+
+    </script>
+</body>
+</html>
